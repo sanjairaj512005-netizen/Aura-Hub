@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AURA Hub</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="topbar">
+
+        <div class="brand">
+            💎 <strong>AURA</strong> Hub
+        </div>
+
+        <div class="welcome">
+            Welcome, <span id="userName">Student</span> 👋
+        </div>
+
+        <div id="clock" class="clock">
+            00:00:00
+        </div>
+
+    </header>
+
+
+    <!-- ================= LOGIN ================= -->
+
+    <section id="loginScreen" class="login-screen">
+
+        <div class="login-card">
+
+            <div class="login-logo">
+                💎
+            </div>
+
+            <h1>Welcome to AURA Hub</h1>
+
+            <p>
+                Your Personal Productivity Workspace
+            </p>
+
+            <form id="loginForm">
+
+                <input
+                    type="text"
+                    id="loginName"
+                    placeholder="Enter your name"
+                    required
+                >
+
+                <input
+                    type="email"
+                    id="loginEmail"
+                    placeholder="Enter your email"
+                    required
+                >
+
+                <button
+                    type="submit"
+                    id="loginButton"
+                >
+                    Sign In
+                </button>
+
+            </form>
+
+            <small>
+                Study • Plan • Learn • Create
+            </small>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= MAIN APP ================= -->
+
+    <section id="appScreen" class="hidden">
+
+        <div class="hero">
+
+            <h1>
+                💎 AURA Hub
+            </h1>
+
+            <p>
+                Your Smart Student Workspace
+            </p>
+
+            <input
+                type="text"
+                id="searchApps"
+                placeholder="🔍 Search Apps"
+                oninput="searchApps()"
+            >
+
+        </div>
+
+
+        <!-- ================= APP GRID ================= -->
+
+        <div class="app-grid">
+
+
+            <!-- STUDY PLANNER -->
+
+            <div
+                class="app-card"
+                data-name="study planner ai study"
+                onclick="openApp('study')"
+            >
+
+                <div class="app-icon">
+                    🤖
+                </div>
+
+                <h3>
+                    Study Planner
+                </h3>
+
+                <p>
+                    AI Study Assistant
+                </p>
+
+            </div>
+
+
+            <!-- NOTES -->
+
+            <div
+                class="app-card"
+                data-name="notes"
+                onclick="openApp('notes')"
+            >
+
+                <div class="app-icon">
+                    📝
+                </div>
+
+                <h3>
+                    Notes
+                </h3>
+
+                <p>
+                    Save your study notes
+                </p>
+
+            </div>
+
+
+            <!-- TASKS -->
+
+            <div
+                class="app-card"
+                data-name="tasks todo"
+                onclick="openApp('tasks')"
+            >
+
+                <div class="app-icon">
+                    ✅
+                </div>
+
+                <h3>
+                    Tasks
+                </h3>
+
+                <p>
+                    Manage your tasks
+                </p>
+
+            </div>
+
+
+            <!-- DASHBOARD -->
+
+            <div
+                class="app-card"
+                data-name="dashboard progress"
+                onclick="openApp('dashboard')"
+            >
+
+                <div class="app-icon">
+                    📊
+                </div>
+
+                <h3>
+                    Dashboard
+                </h3>
+
+                <p>
+                    Track your progress
+                </p>
+
+            </div>
+
+
+            <!-- CALCULATOR -->
+
+            <div
+                class="app-card"
+                data-name="calculator maths"
+                onclick="openApp('calculator')"
+            >
+
+                <div class="app-icon">
+                    🧮
+                </div>
+
+                <h3>
+                    Calculator
+                </h3>
+
+                <p>
+                    Quick calculations
+                </p>
+
+            </div>
+
+
+            <!-- CREATIVE -->
+
+            <div
+                class="app-card"
+                data-name="creative ideas"
+                onclick="openApp('creative')"
+            >
+
+                <div class="app-icon">
+                    💡
+                </div>
+
+                <h3>
+                    Creative Zone
+                </h3>
+
+                <p>
+                    Save your ideas
+                </p>
+
+            </div>
+
+
+            <!-- MUSIC -->
+
+            <div
+                class="app-card"
+                data-name="music"
+                onclick="openApp('music')"
+            >
+
+                <div class="app-icon">
+                    🎵
+                </div>
+
+                <h3>
+                    Music
+                </h3>
+
+                <p>
+                    Study Music
+                </p>
+
+            </div>
+
+
+            <!-- GAMES -->
+
+            <div
+                class="app-card"
+                data-name="games quiz"
+                onclick="openApp('games')"
+            >
+
+                <div class="app-icon">
+                    🎮
+                </div>
+
+                <h3>
+                    Games
+                </h3>
+
+                <p>
+                    Take a short break
+                </p>
+
+            </div>
+
+
+            <!-- PROFILE -->
+
+            <div
+                class="app-card"
+                data-name="profile settings"
+                onclick="openApp('profile')"
+            >
+
+                <div class="app-icon">
+                    ⚙️
+                </div>
+
+                <h3>
+                    Profile
+                </h3>
+
+                <p>
+                    Account Settings
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= MODAL ================= -->
+
+    <div
+        id="modal"
+        class="modal hidden"
+    >
+
+        <div class="modal-box">
+
+            <button
+                class="close-btn"
+                onclick="closeApp()"
+            >
+                ×
+            </button>
+
+
+            <!-- ================= STUDY ================= -->
+
+            <div
+                id="studyApp"
+                class="app-window hidden"
+            >
+
+                <h2>
+                    🤖 AURA Study Assistant
+                </h2>
+
+                <p>
+                    Ask your academic questions.
+                </p>
+
+
+                <div
+                    id="chatBox"
+                    class="chat-box"
+                >
+
+                    <div class="bot-message">
+
+                        👋 Hi! I'm AURA Study Assistant.
+
+                        <br><br>
+
+                        Try questions like:
+
+                        <br><br>
+
+                        • What is Java?
+
+                        <br>
+
+                        • What is DBMS?
+
+                        <br>
+
+                        • What is OS?
+
+                        <br>
+
+                        • Explain normalization.
+
+                        <br>
+
+                        • What is an algorithm?
+
+                        <br>
+
+                        • Explain TCP.
+
+                        <br>
+
+                        • Give important exam questions.
+
+                    </div>
+
+                </div>
+
+
+                <div class="chat-input">
+
+                    <input
+                        type="text"
+                        id="studyQuestion"
+                        placeholder="Ask your question..."
+                        autocomplete="off"
+                    >
+
+                    <button
+                        type="button"
+                        onclick="askStudyAI()"
+                    >
+                        Send
+                    </button>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    onclick="clearStudyChat()"
+                >
+                    🗑️ Clear Chat
+                </button>
+
+            </div>
+
+
+            <!-- ================= NOTES ================= -->
+
+            <div
+                id="notesApp"
+                class="app-window hidden"
+            >
+
+                <h2>
+                    📝 Notes
+                </h2>
+
+                <input
+                    type="text"
+                    id="noteTitle"
+                    placeholder="Note title"
+                >
+
+                <textarea
+                    id="noteContent"
+                    placeholder="Write your note..."
+                ></textarea>
+
+                <button
+                    type="button"
+                    onclick="saveNote()"
+                >
+                    💾 Save Note
+                </button>
+
+                <div id="notesList"></div>
+
+            </div>
+
+
+            <!-- ================= TASKS ================= -->
+
+            <div
+                id="tasksApp"
+                class="app-window hidden"
+            >
+
+                <h2>
+                    ✅ Tasks
+                </h2>
+
+                <div class="task-input">
+
+                    <input
+                        type="text"
+                        id="taskInput"
+                        placeholder="Enter a task..."
+                    >
+
+                    <button
+                        type="button"
+                        onclick="addTask()"
+                    >
+                        Add
+                    </button>
+
+                </div>
+
+                <div id="taskList"></div>
+
+            </div>
+
+
+            <!-- ================= DASHBOARD ================= -->
+
+            <div
+                id="dashboardApp"
+                class="app-window hidden"
+            >
+
+                <h2>
+                    📊 Dashboard
+                </h2>
+
+                <div class="stats">
+
+                    <div class="stat">
+                        <strong id="totalTasks">0</strong>
+                        <span>Total Tasks</span>
+                    </div>
+
+                    <div class="stat">
+                        <strong id="completedTasks">0</strong>
+                        <span>Completed</span>
+                    </div>
+
+                    <div class="stat">
+                        <strong id="pendingTasks">0</strong>
+                        <span>Pending</span>
+                    </div>
+
+                    <div class="stat">
+                        <strong id="progress">0%</strong>
+                        <span>Progress</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= CALCULATOR ================= -->
+
+            <div
+                id="calculatorApp"
+                class="app-window hidden"
+            >
+
+                <h2>
+                    🧮 Calculator
+                </h2>
+
+                <input
+                    type="text"
+                    id="calcDisplay"
+                    class="calc-display"
+                    readonly
+                >
+
+                <div class="calculator">
+
+                    <button onclick="calcInput('7')">7</button>
+                    <button onclick="calcInput('8')">8</button>
+                    <button onclick="calcInput('9')">9</button>
+                    <button onclick="calcInput('/')">÷</button>
+
+                    <button onclick="calcInput('4')">4</button>
+                    <button onclick="calcInput('5')">5</button>
+                    <button onclick="calcInput('6')">6</button>
+                    <button onclick="calcInput('*')">×</button>
+
+                    <button onclick="calcInput('1')">1</button>
+                    <button onclick="calcInput('2')">2</button>
+                    <button onclick="calcInput('3')">3</button>
+                    <button onclick="calcInput('-')">−</button>
+
+                    <button onclick="calcInput('0')">0</button>
+                    <button onclick="calcInput('.')">.</button>
+                    <button onclick="calculate()">=</button>
+                    <button onclick="calcInput('+')">+</button>
+
+                    <button
+                        class="clear"
+                        onclick="clearCalculator()"
+                    >
+                        CLEAR
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= CREATIVE ================= -->
+
+            <div
+                id="creativeApp"
+                class="app-window hidden"
+            >
+
+                <h2>
+                    💡 Creative Zone
+                </h2>
+
+                <textarea
+                    id="creativeText"
+                    placeholder="Write your idea..."
+                ></textarea>
+
+                <button
+                    type="button"
+                    onclick="saveCreative()"
+                >
+                    💾 Save Idea
+                </button>
+
+                <p id="creativeStatus"></p>
+
+            </div>
+
+
+            <!-- ================= MUSIC ================= -->
+
+            <div
+                id="musicApp"
+                class="app-window hidden"
+            >
+
+                <h2>
+                    🎵 Music
+                </h2>
+
+                <div class="music-card">
+
+                    <div class="music-icon">
+                        🎧
+                    </div>
+
+                    <h3>
+                        Study Music
+                    </h3>
+
+                    <p>
+                        Relax and focus while studying.
+                    </p>
+
+                    <a
+                        href="https://music.youtube.com/"
+                        target="_blank"
+                        rel="noopener"
+                        class="music-button"
+                    >
+                        🎵 Open Music
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= GAMES ================= -->
+
+            <div
+                id="gamesApp"
+                class="app-window hidden"
+            >
+
+                <h2>
+                    🎮 Games
+                </h2>
+
+                <div class="game-card">
+
+                    <h3>
+                        🎯 Guess the Number
+                    </h3>
+
+                    <p>
+                        Guess a number between 1 and 10.
+                    </p>
+
+                    <input
+                        type="number"
+                        id="guessInput"
+                        min="1"
+                        max="10"
+                        placeholder="1 - 10"
+                    >
+
+                    <button
+                        type="button"
+                        onclick="guessNumber()"
+                    >
+                        Guess
+                    </button>
+
+                    <p id="guessResult"></p>
+
+                </div>
+
+
+                <div class="game-card">
+
+                    <h3>
+                        🧠 Quick Quiz
+                    </h3>
+
+                    <p>
+                        Which language is used with JVM?
+                    </p>
+
+                    <button onclick="quizAnswer('Java')">
+                        Java
+                    </button>
+
+                    <button onclick="quizAnswer('HTML')">
+                        HTML
+                    </button>
+
+                    <button onclick="quizAnswer('CSS')">
+                        CSS
+                    </button>
+
+                    <p id="quizResult"></p>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= PROFILE ================= -->
+
+            <div
+                id="profileApp"
+                class="app-window hidden"
+            >
+
+                <h2>
+                    ⚙️ Profile
+                </h2>
+
+                <div class="profile-box">
+
+                    <p>
+                        <strong>Name:</strong>
+                        <span id="profileName">-</span>
+                    </p>
+
+                    <p>
+                        <strong>Email:</strong>
+                        <span id="profileEmail">-</span>
+                    </p>
+
+                    <button
+                        type="button"
+                        class="logout"
+                        onclick="logoutUser()"
+                    >
+                        🚪 Logout
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= SCRIPT ================= -->
+
+    <script src="script.js"></script>
+
+
+    <!-- LOGIN FORM FIX -->
+
+    <script>
+
+        document
+            .getElementById("loginForm")
+            .addEventListener("submit", function(event) {
+
+                event.preventDefault();
+
+                loginUser();
+
+            });
+
+    </script>
+
+</body>
+
+</html>
